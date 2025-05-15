@@ -11,35 +11,28 @@ import java.io.IOException;
 import java.io.Writer;
 
 /**
-
  * 动态文件生成
  */
 public class DynamicGenerator {
 
     public static void main(String[] args) throws IOException, TemplateException {
         String projectPath = System.getProperty("user.dir");
-        String inputPath = projectPath + File.separator + "/tetra-generator-basic/src/main/resources/templates/MainTemplate.java.ftl";
-        String outputPath =projectPath + File.separator + "MainTemplate.java";
+        String inputPath = projectPath + File.separator + "src/main/resources/templates/MainTemplate.java.ftl";
+        String outputPath = projectPath + File.separator + "MainTemplate.java";
         MainTemplateConfig mainTemplateConfig = new MainTemplateConfig();
-        mainTemplateConfig.setAuthor("Tetra");
+        mainTemplateConfig.setAuthor("tetra");
         mainTemplateConfig.setLoop(false);
         mainTemplateConfig.setOutputText("求和结果：");
         doGenerate(inputPath, outputPath, mainTemplateConfig);
     }
 
     /**
-
      * 生成文件
      *
-
-     * @param inputPath 模板文件输入路径
-
+     * @param inputPath  模板文件输入路径
      * @param outputPath 输出路径
-
-     * @param model 数据模型
-
+     * @param model      数据模型
      * @throws IOException
-
      * @throws TemplateException
      */
     public static void doGenerate(String inputPath, String outputPath, Object model) throws IOException, TemplateException {
@@ -67,7 +60,7 @@ public class DynamicGenerator {
         Writer out = new FileWriter(outputPath);
         template.process(model, out);
 
-        // 生成文件后别忘了关闭哦
+        // 生成文件后关闭
         out.close();
     }
 
